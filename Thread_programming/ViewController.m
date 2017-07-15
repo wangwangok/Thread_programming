@@ -28,7 +28,7 @@
     //    [self cocoathread_mainentrypoint:@(926400)];
     //}];
     /// posix thread for selector
-    [ThreadHelper PosixThread:self selector:@selector(posix_main_entry:) object:@(926400)];
+    //[ThreadHelper PosixThread:self selector:@selector(posix_main_entry:) object:@(926400)];
 }
 
 
