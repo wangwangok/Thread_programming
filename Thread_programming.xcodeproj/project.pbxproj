@@ -14,6 +14,9 @@
 		33B437DB1F19DA9A00B2DE75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B437DA1F19DA9A00B2DE75 /* Assets.xcassets */; };
 		33B437DE1F19DA9A00B2DE75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B437DC1F19DA9A00B2DE75 /* LaunchScreen.storyboard */; };
 		33B437E91F19DA9A00B2DE75 /* Thread_programmingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B437E81F19DA9A00B2DE75 /* Thread_programmingTests.m */; };
+		33B437F51F19DB2600B2DE75 /* ThreadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B437F41F19DB2600B2DE75 /* ThreadHelper.m */; };
+		33B437F81F19DB4200B2DE75 /* POSIX_Thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 33B437F61F19DB4200B2DE75 /* POSIX_Thread.c */; };
+		33B437FB1F19E3F600B2DE75 /* ViewOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B437FA1F19E3F600B2DE75 /* ViewOperator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		33B437E41F19DA9A00B2DE75 /* Thread_programmingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Thread_programmingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B437E81F19DA9A00B2DE75 /* Thread_programmingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thread_programmingTests.m; sourceTree = "<group>"; };
 		33B437EA1F19DA9A00B2DE75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33B437F31F19DB2600B2DE75 /* ThreadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadHelper.h; sourceTree = "<group>"; };
+		33B437F41F19DB2600B2DE75 /* ThreadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadHelper.m; sourceTree = "<group>"; };
+		33B437F61F19DB4200B2DE75 /* POSIX_Thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = POSIX_Thread.c; sourceTree = "<group>"; };
+		33B437F71F19DB4200B2DE75 /* POSIX_Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSIX_Thread.h; sourceTree = "<group>"; };
+		33B437F91F19E3F600B2DE75 /* ViewOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOperator.h; sourceTree = "<group>"; };
+		33B437FA1F19E3F600B2DE75 /* ViewOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOperator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +94,12 @@
 				33B437D21F19DA9A00B2DE75 /* AppDelegate.m */,
 				33B437D41F19DA9A00B2DE75 /* ViewController.h */,
 				33B437D51F19DA9A00B2DE75 /* ViewController.m */,
+				33B437F91F19E3F600B2DE75 /* ViewOperator.h */,
+				33B437FA1F19E3F600B2DE75 /* ViewOperator.m */,
+				33B437F31F19DB2600B2DE75 /* ThreadHelper.h */,
+				33B437F41F19DB2600B2DE75 /* ThreadHelper.m */,
+				33B437F61F19DB4200B2DE75 /* POSIX_Thread.c */,
+				33B437F71F19DB4200B2DE75 /* POSIX_Thread.h */,
 				33B437D71F19DA9A00B2DE75 /* Main.storyboard */,
 				33B437DA1F19DA9A00B2DE75 /* Assets.xcassets */,
 				33B437DC1F19DA9A00B2DE75 /* LaunchScreen.storyboard */,
@@ -213,7 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B437FB1F19E3F600B2DE75 /* ViewOperator.m in Sources */,
+				33B437F81F19DB4200B2DE75 /* POSIX_Thread.c in Sources */,
 				33B437D61F19DA9A00B2DE75 /* ViewController.m in Sources */,
+				33B437F51F19DB2600B2DE75 /* ThreadHelper.m in Sources */,
 				33B437D31F19DA9A00B2DE75 /* AppDelegate.m in Sources */,
 				33B437D01F19DA9A00B2DE75 /* main.m in Sources */,
 			);
