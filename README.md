@@ -1,5 +1,6 @@
 # Thread Programming Case
 ![](https://img.shields.io/badge/posix%20block-success-brightgreen.svg)  ![](https://img.shields.io/badge/posix%20selector-success-brightgreen.svg)
+
 这是我在复习多线程时，配合我对官方文档翻译的[《多线程编程指南》](https://www.gitbook.com/book/wangwangok/threading-programming-guide-will/details)做的一个小练习，也是一次加深学习。
 ## 创建方式
 - 1、使用``NSThread``的方式，包括了``initWithTarget``和``detachNewThread``两种方式；
