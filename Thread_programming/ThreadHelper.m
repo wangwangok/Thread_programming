@@ -33,7 +33,7 @@ static ThreadHelper *local_helper;
 pthread_cond_t cond_t;
 
 + (void)CocoaThread:(BOOL)detached withTarget:(id)target selector:(SEL)aSelector object:(id)aObject block:(void(^)(void))aBlock{
-    TPThread *cocoa_thread = [CocoaThread newThreadForDetached:detached withTarget:aObject selector:aSelector object:aObject block:aBlock];
+    TPThread *cocoa_thread = [CocoaThread newThreadForDetached:detached withTarget:target selector:aSelector object:aObject block:aBlock];
     if (cocoa_thread) {
         [cocoa_thread start];
     }
@@ -59,7 +59,6 @@ pthread_cond_t cond_t;
     pthread_t thread_id = tp_pthread_create(the_main_entry_point, &_impInfo, &cond_t);
     return thread_id;
 }
-
 
 + (pthread_t)PosixThread:(void(^)(void))main_entry{
     ThreadHelper *helper = [[ThreadHelper alloc] init];
@@ -108,7 +107,33 @@ void *the_main_entry_point(void *data){
         sel_imp(target, aSelector, object);
     }
     pthread_cond_destroy(&cond_t);
+    
+    CFRunLoopRef runloopRef = CFRunLoopGetCurrent();
+    
     return data;
+}
+#pragma mark - Thread Info -
+/**
+ * specific并不是针对特定的线程，意思是在同一进程中的线程都可以访问该数据
+ * 使用pthread_self()来获取当前线程
+ **/
+- (id)posix_getThreadInfor:(NSString *)key{
+    pthread_key_t p_key = [key hash];
+    id data = (__bridge id)pthread_getspecific(p_key);
+    return data;
+}
+void pkey_create(void *data){
+    ///pthread_self();
+    
+}
+- (void)posix_setTheadInfor:(NSString *)key andValue:(id)value{
+    pthread_key_t p_key = [key hash];
+    pthread_key_create(&p_key, pkey_create);
+    pthread_setspecific(p_key, (__bridge void *)value);
+}
+
+- (BOOL)posix_threadInfo_removeKey:(NSString *)key{
+    return pthread_key_delete([key hash]) == 0 ? YES : NO;
 }
 
 @end
@@ -119,9 +144,9 @@ void *the_main_entry_point(void *data){
     TPThread *the_thread;
     if (detached == YES) {
         if (aBlock) {
-            [NSThread detachNewThreadWithBlock:aBlock];
+            [TPThread detachNewThreadWithBlock:aBlock];
         }else{
-            [NSThread detachNewThreadSelector:aSelector toTarget:target withObject:aObject];
+            [TPThread detachNewThreadSelector:aSelector toTarget:target withObject:aObject];
         }
     }else{
         if (aBlock) {
@@ -129,7 +154,10 @@ void *the_main_entry_point(void *data){
         }else{
             the_thread = [[TPThread alloc] initWithTarget:target selector:aSelector object:aObject];
         }
+        // 同样设置无效
+        //[the_thread setStackSize:1024];
     }
+    [the_thread threadDictionary];
     return the_thread;
 }
 

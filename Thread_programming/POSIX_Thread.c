@@ -23,6 +23,8 @@ pthread_t tp_pthread_create(void*(*main_entry_point)(void *),void *res,pthread_c
     if (result != 0) {
         assert(result);
     }
+    // 尝试更改线程栈大小无效，我选择死亡😂
+    ///pthread_attr_setstacksize(&thread_attr, 524304);
     
     pthread_mutex_t mutex_t;
     result = pthread_mutex_init(&mutex_t, NULL);
@@ -41,6 +43,9 @@ pthread_t tp_pthread_create(void*(*main_entry_point)(void *),void *res,pthread_c
         /// error
         assert(thread_error);
     }
+    ///size_t stack_size;
+    ///pthread_attr_getstacksize(&thread_attr, &stack_size);
+    ///printf("%zd",stack_size);
     pthread_attr_destroy(&thread_attr);
     pthread_mutex_destroy(&mutex_t);
     return thread_id;

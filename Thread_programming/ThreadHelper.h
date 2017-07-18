@@ -23,6 +23,12 @@
 
 @property (copy, nonatomic) void(^main_entry_point)(void);
 
+- (id)posix_getThreadInfor:(NSString *)key;
+
+- (void)posix_setTheadInfor:(NSString *)key andValue:(id)value;
+
+- (BOOL)posix_threadInfo_removeKey:(NSString *)key;
+
 @end
 
 @interface CocoaThread : NSObject
