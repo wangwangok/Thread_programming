@@ -17,6 +17,7 @@
 		33B437F51F19DB2600B2DE75 /* ThreadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B437F41F19DB2600B2DE75 /* ThreadHelper.m */; };
 		33B437F81F19DB4200B2DE75 /* POSIX_Thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 33B437F61F19DB4200B2DE75 /* POSIX_Thread.c */; };
 		33B437FB1F19E3F600B2DE75 /* ViewOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B437FA1F19E3F600B2DE75 /* ViewOperator.m */; };
+		3B1EEBFC1F1F312700229968 /* RunloopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1EEBFB1F1F312700229968 /* RunloopSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		33B437F71F19DB4200B2DE75 /* POSIX_Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSIX_Thread.h; sourceTree = "<group>"; };
 		33B437F91F19E3F600B2DE75 /* ViewOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOperator.h; sourceTree = "<group>"; };
 		33B437FA1F19E3F600B2DE75 /* ViewOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOperator.m; sourceTree = "<group>"; };
+		3B1EEBFA1F1F312700229968 /* RunloopSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunloopSource.h; sourceTree = "<group>"; };
+		3B1EEBFB1F1F312700229968 /* RunloopSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunloopSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				33B437F41F19DB2600B2DE75 /* ThreadHelper.m */,
 				33B437F61F19DB4200B2DE75 /* POSIX_Thread.c */,
 				33B437F71F19DB4200B2DE75 /* POSIX_Thread.h */,
+				3B1EEBFA1F1F312700229968 /* RunloopSource.h */,
+				3B1EEBFB1F1F312700229968 /* RunloopSource.m */,
 				33B437D71F19DA9A00B2DE75 /* Main.storyboard */,
 				33B437DA1F19DA9A00B2DE75 /* Assets.xcassets */,
 				33B437DC1F19DA9A00B2DE75 /* LaunchScreen.storyboard */,
@@ -230,6 +235,7 @@
 			files = (
 				33B437FB1F19E3F600B2DE75 /* ViewOperator.m in Sources */,
 				33B437F81F19DB4200B2DE75 /* POSIX_Thread.c in Sources */,
+				3B1EEBFC1F1F312700229968 /* RunloopSource.m in Sources */,
 				33B437D61F19DA9A00B2DE75 /* ViewController.m in Sources */,
 				33B437F51F19DB2600B2DE75 /* ThreadHelper.m in Sources */,
 				33B437D31F19DA9A00B2DE75 /* AppDelegate.m in Sources */,
@@ -430,6 +436,7 @@
 				33B437EF1F19DA9A00B2DE75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		33B437F01F19DA9A00B2DE75 /* Build configuration list for PBXNativeTarget "Thread_programmingTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +445,7 @@
 				33B437F21F19DA9A00B2DE75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

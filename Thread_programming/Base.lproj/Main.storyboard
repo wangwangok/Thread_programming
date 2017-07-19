@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pRX-p7-Ma4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pRX-p7-Ma4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,14 +38,25 @@
                                     <action selector="request:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ouy-Eo-Ip0"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mh8-ng-rez">
+                                <rect key="frame" x="87" y="193" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="0FA-cy-5Sd"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QgV-Hi-v5z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8qE-xt-DMe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lJE-NZ-hUw" secondAttribute="trailing" id="DaP-1f-nfY"/>
+                            <constraint firstItem="lJE-NZ-hUw" firstAttribute="top" secondItem="mh8-ng-rez" secondAttribute="bottom" constant="20" id="Dl1-36-qoo"/>
                             <constraint firstItem="lJE-NZ-hUw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HH4-cQ-NGx"/>
                             <constraint firstItem="QgV-Hi-v5z" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="KNz-4o-Za1"/>
                             <constraint firstItem="QgV-Hi-v5z" firstAttribute="top" secondItem="lJE-NZ-hUw" secondAttribute="bottom" constant="50" id="KVu-wu-GAh"/>
+                            <constraint firstItem="mh8-ng-rez" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MOs-Qj-iiD"/>
                             <constraint firstItem="lJE-NZ-hUw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Z2j-CL-d9B"/>
                         </constraints>
                     </view>

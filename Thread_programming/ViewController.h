@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#define _RunloopSource_Version 2
 
+#if _RunloopSource_Version == 2
+#import "RunloopSource.h"
+#endif
 @interface ViewController : UIViewController
 
+- (void)registerSuccess:(RunloopContext *)ctx;
+- (void)removeSuccess:(RunloopContext *)ctx;
 
 @end
 

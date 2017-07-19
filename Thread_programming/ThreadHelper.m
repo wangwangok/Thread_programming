@@ -107,9 +107,6 @@ void *the_main_entry_point(void *data){
         sel_imp(target, aSelector, object);
     }
     pthread_cond_destroy(&cond_t);
-    
-    CFRunLoopRef runloopRef = CFRunLoopGetCurrent();
-    
     return data;
 }
 #pragma mark - Thread Info -
