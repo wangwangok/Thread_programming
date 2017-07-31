@@ -12,7 +12,7 @@
 
 @property (copy)void(^sourceFire_handle)(NSMutableArray *);
 
-- (instancetype)init;
+- (instancetype)initWith:(SEL)schedule andCancel:(SEL)cancel;
 
 - (void)addToRunloopWith:(id)target;
 

@@ -103,7 +103,7 @@
     int loop_count = 10;
     do {
 #if _RunloopSource_Version == 2
-        RunloopSource *loopsrc = [[RunloopSource alloc] init];
+        RunloopSource *loopsrc = [[RunloopSource alloc] initWith:@selector(registerSuccess:) andCancel:@selector(removeSuccess:)];
         [loopsrc addToRunloopWith:self];
         __weak typeof(self) weak_self = self;
         loopsrc.sourceFire_handle = ^void(NSMutableArray *command_data){
