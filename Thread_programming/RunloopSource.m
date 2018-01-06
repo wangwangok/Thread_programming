@@ -55,26 +55,30 @@
 
 - (void)sourceFire{
     if (self.sourceFire_handle) {
-        self.sourceFire_handle(command_data);
+        @synchronized (command_data) {
+            self.sourceFire_handle(command_data);
+        }
+        
+//        NSConditionLock *lock = [[NSConditionLock alloc] initWithCondition:NO_DATA];
         /// 这里需要注意一下的是：如果在处理事件完成之后没有调用该方法，会在cancle方法中访问到已经释放掉的内存。官方文档也提到了，根据我自己的理解，将该函数放在这里
         CFRunLoopSourceInvalidate(runloop_src);
     }
 }
 
-void	runloopsrc_schedule(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
+void runloopsrc_schedule(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
     RunloopSource *src = (__bridge RunloopSource *)info;
     RunloopContext *ctx = [[RunloopContext alloc] initWith:src aRunloop:rl];
     ViewController *controller = (ViewController *)(src->_target);
     [controller performSelectorOnMainThread:@selector(registerSuccess:) withObject:ctx waitUntilDone:NO];
 }
 
-void	runloopsrc_perform(void *info){
+void runloopsrc_perform(void *info){
     RunloopSource *src = (__bridge RunloopSource *)info;
 //    sleep(2);
     [src sourceFire];/// 接口用c，但是处理数据，看习惯，习惯用OC
 }
 
-void	runloopsrc_cancel(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
+void runloopsrc_cancel(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
     printf("%p", info);
     RunloopSource *src = (__bridge RunloopSource *)info;
     RunloopContext *ctx = [[RunloopContext alloc] initWith:src aRunloop:rl];

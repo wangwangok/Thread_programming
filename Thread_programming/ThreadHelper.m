@@ -35,6 +35,7 @@ pthread_cond_t cond_t;
 + (void)CocoaThread:(BOOL)detached withTarget:(id)target selector:(SEL)aSelector object:(id)aObject block:(void(^)(void))aBlock{
     TPThread *cocoa_thread = [CocoaThread newThreadForDetached:detached withTarget:target selector:aSelector object:aObject block:aBlock];
     if (cocoa_thread) {
+        
         [cocoa_thread start];
     }
 }
@@ -52,6 +53,9 @@ pthread_cond_t cond_t;
         .the_imp  = sel_imp
     };
     
+    id obj = ((id(*)(id,SEL))objc_msgSend)(((id(*)(id,SEL))objc_msgSend)([self class],@selector(alloc)),@selector(init));
+    ((id(*)(id,SEL))objc_msgSend)(obj,NSSelectorFromString(@"release"));
+    
     int result = pthread_cond_init(&cond_t, NULL);
     if (result != 0) {
         assert(result);
@@ -59,9 +63,13 @@ pthread_cond_t cond_t;
     pthread_t thread_id = tp_pthread_create(the_main_entry_point, &_impInfo, &cond_t);
     return thread_id;
 }
+- (void)xxxxx{
+
+}
 
 + (pthread_t)PosixThread:(void(^)(void))main_entry{
     ThreadHelper *helper = [[ThreadHelper alloc] init];
+    
     local_helper = helper;
     if (main_entry) {
         helper.main_entry_point = main_entry;

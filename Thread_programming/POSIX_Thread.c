@@ -31,11 +31,15 @@ pthread_t tp_pthread_create(void*(*main_entry_point)(void *),void *res,pthread_c
     if (result != 0) {
         assert(result);
     }
-    pthread_mutex_lock(&mutex_t);
     int thread_error = pthread_create(&thread_id, &thread_attr, main_entry_point, res);
-    pthread_mutex_unlock(&mutex_t);
+    /**
+     * 解释一下为什么在使用条件变量时需要传入一个mutex，首先得知道mutex互斥的特性，而且条件变量在多次使用时，是可以broadcast的。所以为了保证condition的唯一性，需要使用mutex实现。即：
+     “条件本身是由互斥量来保护的”！！！
+     */
+    pthread_mutex_lock(&mutex_t);
     /// 防止过早返回，导致主入口点函数出错
     result = pthread_cond_timedwait(condition, &mutex_t, NULL);
+    pthread_mutex_unlock(&mutex_t);
     if (result != 0) {
         assert(result);
     }
