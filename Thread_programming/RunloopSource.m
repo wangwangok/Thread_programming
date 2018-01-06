@@ -9,18 +9,27 @@
 #import "RunloopSource.h"
 #import "ViewController.h"
 
+typedef struct rls_temp_ctx{
+    void *target;
+    const char *schedule;
+    const char *cancel;
+} rls_temp_context;
+
 @implementation RunloopSource{
     CFRunLoopSourceRef runloop_src;
     NSMutableArray *command_data;
     @private
     id _target;
+    
 }
+rls_temp_context tmp_ctx;
 
-- (instancetype)init{
+- (instancetype)initWith:(SEL)schedule andCancel:(SEL)cancel{
     self = [super init];
     if (self) {
+        tmp_ctx.target = (__bridge void *)(self),tmp_ctx.schedule = [NSStringFromSelector(schedule) UTF8String],tmp_ctx.cancel = [NSStringFromSelector(cancel) UTF8String];
         CFRunLoopSourceContext ctx = {
-            .info = (__bridge void *)(self),
+            .info = &tmp_ctx,
             .retain = NULL,
             .release = NULL,
             .copyDescription = NULL,
@@ -80,10 +89,16 @@ void runloopsrc_perform(void *info){
 
 void runloopsrc_cancel(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
     printf("%p", info);
-    RunloopSource *src = (__bridge RunloopSource *)info;
-    RunloopContext *ctx = [[RunloopContext alloc] initWith:src aRunloop:rl];
-    ViewController *controller = (ViewController *)(src->_target);
-    [controller performSelectorOnMainThread:@selector(removeSuccess:) withObject:ctx waitUntilDone:NO];
+    rls_temp_context *tmp_ctx = info;
+    if (tmp_ctx == NULL) {
+        return;
+    }
+    RunloopSource *src = (__bridge RunloopSource *)tmp_ctx->target;/// RunloopSource类的self
+    ViewController *target = (ViewController *)(src->_target);/// 真正的外部控制器
+    SEL selector = NSSelectorFromString([NSString stringWithUTF8String:tmp_ctx->cancel]);
+    if ([target respondsToSelector:selector]) {
+        [target performSelectorOnMainThread:selector withObject:[[RunloopContext alloc] initWith:src aRunloop:rl] waitUntilDone:NO];
+    }
 }
 
 Boolean	_equal(const void *info1, const void *info2){
