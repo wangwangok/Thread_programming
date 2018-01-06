@@ -74,16 +74,25 @@ rls_temp_context tmp_ctx;
     }
 }
 
-void runloopsrc_schedule(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
-    RunloopSource *src = (__bridge RunloopSource *)info;
-    RunloopContext *ctx = [[RunloopContext alloc] initWith:src aRunloop:rl];
-    ViewController *controller = (ViewController *)(src->_target);
-    [controller performSelectorOnMainThread:@selector(registerSuccess:) withObject:ctx waitUntilDone:NO];
+void    runloopsrc_schedule(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
+    rls_temp_context *tmp_ctx = info;
+    if (tmp_ctx == NULL) {
+        return;
+    }
+    RunloopSource *src = (__bridge RunloopSource *)tmp_ctx->target;/// RunloopSource类的self
+    ViewController *target = (ViewController *)(src->_target);/// 真正的外部控制器
+    SEL selector = NSSelectorFromString([NSString stringWithUTF8String:tmp_ctx->schedule]);
+    if ([target respondsToSelector:selector]) {
+        [target performSelectorOnMainThread:selector withObject:[[RunloopContext alloc] initWith:src aRunloop:rl] waitUntilDone:NO];
+    }
 }
 
-void runloopsrc_perform(void *info){
-    RunloopSource *src = (__bridge RunloopSource *)info;
-//    sleep(2);
+void    runloopsrc_perform(void *info){
+    rls_temp_context *tmp_ctx = info;
+    if (tmp_ctx == NULL) {
+        return;
+    }
+    RunloopSource *src = (__bridge RunloopSource *)tmp_ctx->target;/// RunloopSource类的self
     [src sourceFire];/// 接口用c，但是处理数据，看习惯，习惯用OC
 }
 
@@ -101,7 +110,7 @@ void runloopsrc_cancel(void *info, CFRunLoopRef rl, CFRunLoopMode mode){
     }
 }
 
-Boolean	_equal(const void *info1, const void *info2){
+Boolean    _equal(const void *info1, const void *info2){
     return info1 == info2;
 }
 
